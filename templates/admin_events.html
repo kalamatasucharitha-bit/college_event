@@ -1,0 +1,80 @@
+{% extends "admin_layout.html" %}
+
+{% block content %}
+
+<h2>📅 Event Management</h2>
+
+<!-- =========================
+     ADD EVENT FORM
+========================= -->
+<form method="POST" style="margin-bottom:25px; display:flex; flex-wrap:wrap; gap:10px;">
+
+    <input name="name" placeholder="Event Name" required>
+
+    <input name="date" type="date" required>
+
+    <input name="venue" placeholder="Venue" required>
+
+    <input name="description" placeholder="Description" required>
+
+    <!-- 🔥 CATEGORY DROPDOWN -->
+    <select name="category" required>
+        <option value="">Select Category</option>
+        {% for c in categories %}
+            <option value="{{ c }}">{{ c.capitalize() }}</option>
+        {% endfor %}
+    </select>
+
+    <input name="image" placeholder="Image (e.g. hack.jpg)">
+
+    <button style="background:#3b82f6; color:white;">Add Event</button>
+
+</form>
+
+<hr>
+
+<!-- =========================
+     EVENTS TABLE
+========================= -->
+<h3>All Events</h3>
+
+<table border="1" cellpadding="10" style="width:100%; text-align:center; border-collapse:collapse;">
+
+<tr style="background:#1f2937; color:white;">
+    <th>Name</th>
+    <th>Date</th>
+    <th>Venue</th>
+    <th>Category</th>
+    <th>Action</th>
+</tr>
+
+{% for e in events %}
+<tr>
+    <td>{{ e.name }}</td>
+    <td>{{ e.date }}</td>
+    <td>{{ e.venue }}</td>
+    <td>{{ e.category }}</td>
+
+    <td>
+
+        <!-- EDIT -->
+        <a href="/admin/edit_event/{{ e.id }}">
+            <button style="background:orange; color:white; margin-right:5px;">
+                Edit
+            </button>
+        </a>
+
+        <!-- DELETE -->
+        <a href="/admin/delete_event/{{ e.id }}">
+            <button style="background:red; color:white;">
+                Delete
+            </button>
+        </a>
+
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

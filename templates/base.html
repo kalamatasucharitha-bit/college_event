@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Event Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- FLOATING BACKGROUND SHAPES -->
+<div class="bg-shape shape1"></div>
+<div class="bg-shape shape2"></div>
+
+<!-- LOADING SPINNER -->
+<div id="loader">
+    <div class="spinner"></div>
+</div>
+
+<!-- NAVIGATION BAR -->
+<nav class="navbar">
+
+    <div class="logo">🎓 College</div>
+
+    <form action="/search" method="GET">
+        <input type="text" name="query" placeholder="Search events..." required>
+    </form>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/fests">Fests</a>
+        <a href="/recommend">Recommend</a>
+        <a href="/registration">Register</a>
+        <a href="/admin">Admin</a>
+    </div>
+
+</nav>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 College Event Management System | Data Structures Project</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+    // Loader hide after page load
+    window.addEventListener("load", function() {
+        const loader = document.getElementById("loader");
+        loader.style.opacity = "0";
+        setTimeout(() => { loader.style.display = "none"; }, 500);
+    });
+</script>
+
+</body>
+</html>

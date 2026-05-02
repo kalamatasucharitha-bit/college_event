@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRAGATI 2026 — Cultural Fest · Amrita University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --green-dark: #3a5a3e;
+      --green-mid: #5a7a5e;
+      --green-light: #8aab8e;
+      --green-pale: #c8deca;
+      --cream: #f4f0e8;
+      --cream-dark: #e8e2d6;
+      --text-dark: #1e2d20;
+      --text-mid: #3a5a3e;
+      --text-light: #6b8f6e;
+      --white: #ffffff;
+      --accent: #c8956b;
+      --shadow: 0 8px 32px rgba(58, 90, 62, 0.15);
+      --shadow-lg: 0 20px 60px rgba(58, 90, 62, 0.22);
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 700px at 5% 10%, rgba(90, 122, 94, 0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 600px 600px at 95% 90%, rgba(138, 171, 142, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(244, 240, 232, 0.92);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(90, 122, 94, 0.15);
+      box-shadow: 0 2px 20px rgba(58, 90, 62, 0.07);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--green-dark);
+    }
+
+    .nav-links a {
+      color: var(--text-mid);
+      text-decoration: none;
+      margin-left: 28px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--green-dark);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 14px;
+      transition: var(--transition);
+    }
+
+    .back-btn:hover {
+      color: var(--green-dark);
+    }
+
+    /* ---- HERO ---- */
+    .anokha-hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 100px 24px 80px;
+      overflow: hidden;
+    }
+
+    .anokha-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 700px 500px at 50% 0%, rgba(138, 171, 142, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90, 122, 94, 0.18) 0%, transparent 70%);
+      animation: floatOrb 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .orb1 {
+      width: 280px;
+      height: 280px;
+      top: -80px;
+      left: -60px;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 200px;
+      height: 200px;
+      bottom: -40px;
+      right: -40px;
+      animation-delay: -3.5s;
+    }
+
+    @keyframes floatOrb {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-24px) scale(1.06);
+      }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 7px 22px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(58, 90, 62, 0.25);
+    }
+
+    .year-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--text-light);
+      letter-spacing: 6px;
+      margin-bottom: 16px;
+    }
+
+    .anokha-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(72px, 12vw, 130px);
+      font-weight: 600;
+      line-height: 0.95;
+      color: var(--green-dark);
+      letter-spacing: -3px;
+      margin-bottom: 20px;
+    }
+
+    .anokha-hero h1 em {
+      font-style: italic;
+      color: var(--green-mid);
+    }
+
+    .anokha-hero p {
+      max-width: 540px;
+      margin: 0 auto 44px;
+      font-size: 16px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* Hero CTA buttons */
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 14px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(58, 90, 62, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-mid);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(58, 90, 62, 0.4);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--green-dark);
+      padding: 14px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      border: 2px solid var(--green-dark);
+      transition: var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: var(--green-dark);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    /* Stats strip */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      max-width: 660px;
+      margin: 0 auto;
+      border: 1px solid var(--green-pale);
+    }
+
+    .stat {
+      flex: 1;
+      text-align: center;
+      padding: 24px 20px;
+      border-right: 1px solid var(--green-pale);
+      transition: var(--transition);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat:hover {
+      background: rgba(138, 171, 142, 0.08);
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 600;
+      color: var(--green-dark);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* ---- DIVIDER ---- */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 48px 60px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--green-pale);
+    }
+
+    .divider-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      color: var(--green-light);
+      letter-spacing: 5px;
+      white-space: nowrap;
+    }
+
+    /* ---- FILTER TABS ---- */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+      padding: 0 24px;
+    }
+
+    .tab-btn {
+      background: var(--white);
+      color: var(--text-mid);
+      border: 1.5px solid var(--green-pale);
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 2px 8px rgba(58, 90, 62, 0.07);
+    }
+
+    .tab-btn:hover,
+    .tab-btn.active {
+      background: var(--green-dark);
+      color: var(--white);
+      border-color: var(--green-dark);
+      box-shadow: 0 4px 16px rgba(58, 90, 62, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* ---- EVENTS GRID ---- */
+    .events-container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 0 48px 100px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    @media(max-width:1200px) {
+      .events-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media(max-width:800px) {
+      .events-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        padding: 0 20px 60px;
+      }
+    }
+
+    @media(max-width:540px) {
+      .events-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ---- EVENT CARD ---- */
+    .event-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(90, 122, 94, 0.1);
+      display: flex;
+      flex-direction: column;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .event-card:hover {
+      transform: translateY(-14px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-image-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image-wrap img {
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      display: block;
+      background: #1a2a1c;
+      transition: transform 0.55s ease;
+    }
+
+    .event-card:hover .card-image-wrap img {
+      transform: scale(1.09);
+    }
+
+    /* Gradient overlay on image */
+    .card-image-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30, 45, 32, 0.45) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .card-ribbon {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 5px 14px;
+      border-radius: 30px;
+      box-shadow: 0 2px 8px rgba(30, 45, 32, 0.35);
+    }
+
+    .card-date-tag {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      z-index: 2;
+      background: rgba(244, 240, 232, 0.96);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 30px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(30, 45, 32, 0.15);
+    }
+
+    .card-fee-tag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 30px;
+      box-shadow: 0 2px 8px rgba(200, 149, 107, 0.4);
+    }
+
+    .card-body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 9px;
+      line-height: 1.25;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 15px;
+      border-top: 1px solid rgba(200, 222, 202, 0.6);
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .card-venue {
+      font-size: 12px;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .register-btn {
+      background: var(--green-dark);
+      color: var(--white);
+      border: none;
+      padding: 9px 22px;
+      border-radius: 30px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-block;
+      box-shadow: 0 3px 12px rgba(58, 90, 62, 0.25);
+    }
+
+    .register-btn:hover {
+      background: var(--green-mid);
+      transform: scale(1.06);
+    }
+
+    .register-btn.has-fee {
+      background: var(--accent);
+    }
+
+    .register-btn.has-fee:hover {
+      filter: brightness(1.1);
+    }
+
+    /* ---- FREE badge on card footer ---- */
+    .free-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green-dark);
+      background: rgba(138, 171, 142, 0.18);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--green-pale);
+    }
+
+    /* ---- SECTION LABEL ---- */
+    .section-label {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-label h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 600;
+      color: var(--green-dark);
+      letter-spacing: -0.5px;
+    }
+
+    .section-label h2 em {
+      font-style: italic;
+      color: var(--green-mid);
+    }
+
+    .section-label p {
+      font-size: 15px;
+      color: var(--text-light);
+      margin-top: 8px;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 13px;
+      color: var(--text-light);
+      border-top: 1px solid var(--green-pale);
+      background: var(--cream-dark);
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 14px 20px;
+      }
+
+      .anokha-hero {
+        padding: 70px 20px 60px;
+      }
+
+      .events-container {
+        padding: 0 16px 60px;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+      }
+
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--green-pale);
+      }
+
+      .divider {
+        padding: 30px 24px 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">🌿 College Events</div>
+    <div class="nav-links">
+      <a href="/" class="back-btn">← Home</a>
+      <a href="/fests">All Fests</a>
+      <a href="/registration">My Events</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="anokha-hero">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <span class="hero-tag">Amrita University &nbsp;·&nbsp; Mar 10–12, 2026</span>
+    <div class="year-badge">2 &thinsp; 0 &thinsp; 2 &thinsp; 6</div>
+    <h1><em>Pragati</em></h1>
+    <p>A celebration of culture, arts, and creativity. Three days of workshops, competitions, and unforgettable
+      campus experiences.</p>
+
+    <div class="hero-cta-group">
+      <a href="#events" class="btn-primary">Browse Events ↓</a>
+      <a href="/registration" class="btn-outline">My Registrations</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">17</div>
+        <div class="stat-label">Events</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Days</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Mar 10</div>
+        <div class="stat-label">Starts</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-text">✦ &nbsp; ALL EVENTS &nbsp; ✦</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ══════════════ FILTER TABS ══════════════ -->
+  <div class="filter-tabs">
+    <button class="tab-btn active" onclick="filterCards('all',this)">✦ All Events</button>
+    <button class="tab-btn" onclick="filterCards('technical',this)">💻 Technical</button>
+    <button class="tab-btn" onclick="filterCards('gaming',this)">🎮 Gaming</button>
+    <button class="tab-btn" onclick="filterCards('workshop',this)">🛠 Workshop</button>
+    <button class="tab-btn" onclick="filterCards('cultural',this)">🎨 Cultural</button>
+    <button class="tab-btn" onclick="filterCards('entrepreneurship',this)">🚀 Startup</button>
+  </div>
+
+  <!-- ══════════════ EVENTS GRID ══════════════ -->
+  <div class="events-container" id="eventsGrid">
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/analog.png" alt="Analog Circuit Design" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Mar 10</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>Analog Circuit Design</h3>
+        <p class="card-desc">Design and build analog circuits for real-world applications.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Electronics Lab</span>
+          <a href="/register/99" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/battle.png" alt="Battle of the Bands" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Mar 12</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>Battle of the Bands</h3>
+        <p class="card-desc">Compete against the best bands on campus and win the crowd.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Open Stage</span>
+          <a href="/register/99" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="entrepreneurship">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/best.png" alt="Best Manager" loading="lazy">
+        <span class="card-ribbon">Startup</span>
+        <span class="card-date-tag">Mar 11</span>
+        <span class="card-fee-tag">₹500</span>
+      </div>
+      <div class="card-body">
+        <h3>Best Manager</h3>
+        <p class="card-desc">Test your leadership, stress-handling, and business acumen.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 MBA Block</span>
+          <a href="/register/99" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="entrepreneurship">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/budget.png" alt="Budget Builder" loading="lazy">
+        <span class="card-ribbon">Startup</span>
+        <span class="card-date-tag">Mar 10</span>
+        <span class="card-fee-tag">₹200</span>
+      </div>
+      <div class="card-body">
+        <h3>Budget Builder</h3>
+        <p class="card-desc">Financial planning competition for budding entrepreneurs.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Seminar Hall</span>
+          <a href="/register/99" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/decode.png" alt="Decode & Escape" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Mar 12</span>
+        <span class="card-fee-tag">₹400</span>
+      </div>
+      <div class="card-body">
+        <h3>Decode & Escape</h3>
+        <p class="card-desc">Cryptic puzzle solving and reverse engineering challenge.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 CS Lab</span>
+          <a href="/register/99" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="workshop">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/details.png" alt="Devil in the Details" loading="lazy">
+        <span class="card-ribbon">Workshop</span>
+        <span class="card-date-tag">Mar 11</span>
+        <span class="card-fee-tag">₹300</span>
+      </div>
+      <div class="card-body">
+        <h3>Devil in the Details</h3>
+        <p class="card-desc">A workshop on UI/UX and pixel-perfect design principles.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Design Studio</span>
+          <a href="/register/99" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="gaming">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/ipl.png" alt="IPL Auction" loading="lazy">
+        <span class="card-ribbon">Gaming</span>
+        <span class="card-date-tag">Mar 10</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>IPL Auction</h3>
+        <p class="card-desc">Build your dream team with a limited purse in this mock auction.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Main Auditorium</span>
+          <a href="/register/99" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="gaming">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/jungle.png" alt="Jungle Safari Run" loading="lazy">
+        <span class="card-ribbon">Gaming</span>
+        <span class="card-date-tag">Mar 11</span>
+        <span class="card-fee-tag">₹100</span>
+      </div>
+      <div class="card-body">
+        <h3>Jungle Safari Run</h3>
+        <p class="card-desc">An obstacle course and relay race for fitness enthusiasts.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Ground</span>
+          <a href="/register/99" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/legacyof.png" alt="Legacy of Arts" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Mar 12</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>Legacy of Arts</h3>
+        <p class="card-desc">A fine arts exhibition and live painting competition.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Art Studio</span>
+          <a href="/register/99" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/retroclick.png" alt="Retro Click" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Mar 10</span>
+        <span class="card-fee-tag">₹150</span>
+      </div>
+      <div class="card-body">
+        <h3>Retro Click</h3>
+        <p class="card-desc">Vintage-themed photography competition. No digital edits allowed.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Campus Wide</span>
+          <a href="/register/99" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/retroreels.png" alt="Retro Reels" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Mar 12</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>Retro Reels</h3>
+        <p class="card-desc">Short film contest using retro aesthetics and practical effects.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Media Lab</span>
+          <a href="/register/99" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="gaming">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/retrorush.png" alt="Retro Rush" loading="lazy">
+        <span class="card-ribbon">Gaming</span>
+        <span class="card-date-tag">Mar 11</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>Retro Rush</h3>
+        <p class="card-desc">Classic arcade gaming tournament: Pac-Man, Tetris, and more.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Gaming Arena</span>
+          <a href="/register/99" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/retrotometro.png" alt="Retro to Metro" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Mar 12</span>
+        <span class="card-fee-tag">₹500</span>
+      </div>
+      <div class="card-body">
+        <h3>Retro to Metro</h3>
+        <p class="card-desc">A fashion show tracing the evolution of style over decades.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Main Stage</span>
+          <a href="/register/99" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/rewind.png" alt="Rewind DJ Night" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Mar 12</span>
+        <span class="card-fee-tag">₹0</span>
+      </div>
+      <div class="card-body">
+        <h3>Rewind DJ Night</h3>
+        <p class="card-desc">End the fest with a massive throwback dance party.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Open Ground</span>
+          <a href="/register/99" class="register-btn ">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/splendor.png" alt="Splendor Showcase" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Mar 10</span>
+        <span class="card-fee-tag">₹400</span>
+      </div>
+      <div class="card-body">
+        <h3>Splendor Showcase</h3>
+        <p class="card-desc">A talent show for singing, dancing, and unique acts.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Auditorium</span>
+          <a href="/register/99" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/suron.png" alt="Suron Ki Mehfil" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Mar 11</span>
+        <span class="card-fee-tag">₹200</span>
+      </div>
+      <div class="card-body">
+        <h3>Suron Ki Mehfil</h3>
+        <p class="card-desc">Classical and semi-classical solo singing competition.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Seminar Hall 2</span>
+          <a href="/register/99" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="workshop">
+      <div class="card-image-wrap">
+        <img src="/static/pragatievents/twist.png" alt="The Plot Twist" loading="lazy">
+        <span class="card-ribbon">Workshop</span>
+        <span class="card-date-tag">Mar 10</span>
+        <span class="card-fee-tag">₹150</span>
+      </div>
+      <div class="card-body">
+        <h3>The Plot Twist</h3>
+        <p class="card-desc">Creative writing workshop focusing on narrative structure.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Library</span>
+          <a href="/register/99" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /events-container -->
+
+  <footer>
+    🌿 &copy; 2026 Pragati Cultural Fest — Amrita University &nbsp;|&nbsp; College Event Management System
+  </footer>
+
+  <script>
+    function filterCards(category, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('#eventsGrid .event-card');
+      let delay = 0;
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(18px)';
+          card.style.animationDelay = delay + 'ms';
+          card.style.animation = 'none';
+          requestAnimationFrame(() => {
+            card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          });
+          delay += 50;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+  </script>
+
+</body>
+
+</html>

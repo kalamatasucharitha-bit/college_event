@@ -1,0 +1,19 @@
+{% extends "admin_layout.html" %}
+
+{% block content %}
+
+<h2>✏️ Edit Event</h2>
+
+<form method="POST">
+
+    <input name="name" value="{{ event.name }}" required>
+    <input name="date" type="date" value="{{ event.date }}" required>
+    <input name="venue" value="{{ event.venue }}" required>
+    <input name="description" value="{{ event.description }}" required>
+    <input name="category" value="{{ event.category }}" required>
+
+    <button>Update Event</button>
+
+</form>
+
+{% endblock %}

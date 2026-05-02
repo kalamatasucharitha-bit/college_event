@@ -1,0 +1,565 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+/* ═══════════════════════════════════════
+   SMART RECOMMENDER — Premium UI
+═══════════════════════════════════════ */
+
+/* ── Hero Banner ── */
+.rec-hero {
+    text-align: center;
+    padding: 60px 20px 50px;
+    position: relative;
+    overflow: hidden;
+}
+.rec-hero::before {
+    content: "";
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(138,171,142,0.2) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+}
+.rec-hero > * { position: relative; z-index: 1; }
+
+.rec-pill {
+    display: inline-block;
+    background: rgba(58,90,62,0.1);
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--green-pale);
+    margin-bottom: 20px;
+}
+.rec-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 600;
+    color: var(--green-dark);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+}
+.rec-hero h1 em { font-style: italic; color: var(--green-mid); }
+.rec-hero-sub {
+    font-size: 17px;
+    color: var(--text-light);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+/* ── Search Bar ── */
+.rec-search-wrap {
+    max-width: 720px;
+    margin: 0 auto 20px;
+}
+.rec-search-box {
+    display: flex;
+    gap: 0;
+    background: var(--white);
+    border: 2px solid var(--green-pale);
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.rec-search-box:focus-within {
+    border-color: var(--green-mid);
+    box-shadow: 0 0 0 4px rgba(90,122,94,0.12), var(--shadow);
+}
+.rec-search-icon {
+    padding: 0 18px 0 24px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: var(--green-mid);
+    flex-shrink: 0;
+}
+.rec-search-input {
+    flex: 1;
+    padding: 18px 8px;
+    font-size: 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    min-width: 0;
+}
+.rec-search-input::placeholder { color: var(--text-light); }
+.rec-search-btn {
+    background: var(--green-dark);
+    color: var(--white);
+    border: none;
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border-radius: 0 48px 48px 0;
+    transition: var(--transition);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.rec-search-btn:hover {
+    background: var(--green-mid);
+    padding-right: 38px;
+}
+
+/* ── Quick Category Pills ── */
+.rec-quick-label {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 12px;
+}
+.rec-quick-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 720px;
+    margin: 0 auto;
+}
+.quick-pill {
+    background: var(--white);
+    border: 1.5px solid var(--green-pale);
+    color: var(--text-mid);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(58,90,62,0.06);
+}
+.quick-pill:hover {
+    background: var(--green-dark);
+    color: var(--white);
+    border-color: var(--green-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* ── Divider ── */
+.rec-divider {
+    max-width: 900px;
+    margin: 50px auto 36px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.rec-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--green-pale);
+}
+.rec-divider-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--green-dark);
+    white-space: nowrap;
+}
+
+/* ── Results Grid ── */
+.rec-results-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+}
+.rec-count-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+.rec-count {
+    font-size: 14px;
+    color: var(--text-light);
+}
+.rec-query-chip {
+    background: rgba(58,90,62,0.1);
+    color: var(--green-dark);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--green-pale);
+}
+
+.rec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.rec-card {
+    background: var(--white);
+    border: 1px solid var(--green-pale);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-dark);
+    box-shadow: var(--shadow);
+    position: relative;
+}
+.rec-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--green-mid);
+}
+
+.rec-card-img-wrap {
+    position: relative;
+    overflow: hidden;
+    height: 190px;
+    background: var(--cream);
+}
+.rec-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.rec-card:hover .rec-card-img-wrap img { transform: scale(1.08); }
+
+.rec-card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--green-pale) 0%, var(--cream-dark) 100%);
+    font-size: 52px;
+}
+
+/* Score badge overlaid on image */
+.rec-score-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--green-dark);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.rec-score-badge.high { background: #2d7a35; }
+.rec-score-badge.mid  { background: var(--green-mid); }
+.rec-score-badge.low  { background: var(--text-light); }
+
+.rec-cat-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(244,240,232,0.92);
+    color: var(--green-dark);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+}
+
+.rec-card-body {
+    padding: 22px 22px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.rec-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+.rec-card-meta {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.rec-card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.55;
+    flex: 1;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.rec-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--green-pale);
+}
+.rec-card-fee {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green-dark);
+}
+.rec-card-fee.paid { color: var(--accent-warm); }
+.rec-view-btn {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s;
+}
+.rec-card:hover .rec-view-btn { gap: 8px; }
+
+/* Score bar */
+.rec-score-bar-wrap { margin-bottom: 10px; }
+.rec-score-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-light);
+    margin-bottom: 4px;
+}
+.rec-score-bar {
+    height: 4px;
+    background: var(--green-pale);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.rec-score-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green-mid), var(--green-dark));
+    border-radius: 4px;
+    transition: width 0.8s ease;
+}
+
+/* ── Empty state ── */
+.rec-empty {
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+.rec-empty-icon { font-size: 64px; margin-bottom: 16px; }
+.rec-empty h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--green-dark);
+    margin-bottom: 10px;
+}
+.rec-empty p { color: var(--text-light); font-size: 15px; line-height: 1.6; }
+
+/* ── How it works ── */
+.rec-how {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+@media (max-width: 640px) { .rec-how { grid-template-columns: 1fr; } }
+.rec-how-card {
+    background: var(--white);
+    border: 1px solid var(--green-pale);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(58,90,62,0.06);
+}
+.rec-how-num {
+    width: 40px; height: 40px;
+    background: var(--green-dark);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px;
+    margin: 0 auto 12px;
+}
+.rec-how-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--green-dark);
+    margin-bottom: 6px;
+}
+.rec-how-card p { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+</style>
+
+<!-- ══════════ HERO ══════════ -->
+<div class="rec-hero">
+    <div class="rec-pill">✦ AI-Powered</div>
+    <h1>Find Your <em>Perfect</em><br>Event Match</h1>
+    <p class="rec-hero-sub">
+        Tell us your interests — our smart engine scans {{ events|length if events is defined else "all" }} events
+        and surfaces the ones made for you.
+    </p>
+
+    <div class="rec-search-wrap">
+        <form method="POST">
+            <div class="rec-search-box">
+                <span class="rec-search-icon">🔍</span>
+                <input
+                    type="text"
+                    name="interest"
+                    value="{{ user_input }}"
+                    placeholder="e.g. I love coding, robotics, music and dance..."
+                    class="rec-search-input"
+                    id="interestInput"
+                    required
+                >
+                <button type="submit" class="rec-search-btn">Find Matches →</button>
+            </div>
+        </form>
+    </div>
+
+    <p class="rec-quick-label">Or try a quick search:</p>
+    <div class="rec-quick-pills">
+        <button class="quick-pill" onclick="fillSearch('coding and programming')">💻 Coding</button>
+        <button class="quick-pill" onclick="fillSearch('robotics and autonomous robots')">🤖 Robotics</button>
+        <button class="quick-pill" onclick="fillSearch('music and singing performance')">🎵 Music</button>
+        <button class="quick-pill" onclick="fillSearch('dance choreography performance')">💃 Dance</button>
+        <button class="quick-pill" onclick="fillSearch('hackathon innovation build')">⚡ Hackathon</button>
+        <button class="quick-pill" onclick="fillSearch('startup entrepreneurship pitch')">🚀 Startup</button>
+        <button class="quick-pill" onclick="fillSearch('gaming esports tournament')">🎮 Gaming</button>
+        <button class="quick-pill" onclick="fillSearch('AI machine learning deep learning')">🧠 AI / ML</button>
+    </div>
+</div>
+
+<!-- ══════════ RESULTS ══════════ -->
+{% if recommendations %}
+<div class="rec-results-section">
+    <div class="rec-divider">
+        <div class="rec-divider-line"></div>
+        <div class="rec-divider-text">🎯 Top Picks For You</div>
+        <div class="rec-divider-line"></div>
+    </div>
+
+    <div class="rec-count-bar">
+        <span class="rec-count">Showing {{ recommendations|length }} best match{{ 'es' if recommendations|length != 1 else '' }}</span>
+        <span class="rec-query-chip">🔍 "{{ user_input }}"</span>
+    </div>
+
+    <div class="rec-grid">
+        {% for e in recommendations %}
+        {% set score_pct = (e.score * 100)|int %}
+        <a href="/event/{{ e.id }}" class="rec-card">
+
+            <div class="rec-card-img-wrap">
+                {% set img = e.image or '' %}
+                {% if img.startswith('http') %}
+                    <img src="{{ img }}" alt="{{ e.name }}">
+                {% elif img.startswith('root:') %}
+                    <img src="{{ url_for('static', filename=img[5:]) }}" alt="{{ e.name }}">
+                {% elif img %}
+                    <img src="{{ url_for('static', filename='events/' + img) }}" alt="{{ e.name }}">
+                {% else %}
+                    <div class="rec-card-img-placeholder">
+                        {% if e.category == 'technical' %}🖥️
+                        {% elif e.category == 'cultural' %}🎭
+                        {% elif e.category == 'sports' %}🏆
+                        {% elif e.category == 'gaming' %}🎮
+                        {% elif e.category == 'workshop' %}🛠️
+                        {% else %}🎓{% endif %}
+                    </div>
+                {% endif %}
+
+                <span class="rec-cat-badge">{{ e.category|title }}</span>
+                <span class="rec-score-badge {% if score_pct >= 50 %}high{% elif score_pct >= 25 %}mid{% else %}low{% endif %}">
+                    ★ {{ score_pct }}% Match
+                </span>
+            </div>
+
+            <div class="rec-card-body">
+                <div class="rec-card-title">{{ e.name }}</div>
+                <div class="rec-card-meta">
+                    <span>📅 {{ e.date }}</span>
+                    <span>📍 {{ e.venue.split(',')[0] }}</span>
+                </div>
+
+                <div class="rec-score-bar-wrap">
+                    <div class="rec-score-bar">
+                        <div class="rec-score-bar-fill" style="width: {{ [score_pct, 100]|min }}%"></div>
+                    </div>
+                </div>
+
+                <div class="rec-card-desc">{{ e.description }}</div>
+
+                <div class="rec-card-footer">
+                    <span class="rec-card-fee {% if e.fee and e.fee > 0 %}paid{% endif %}">
+                        {% if e.fee and e.fee > 0 %}💰 ₹{{ e.fee }}{% else %}✅ Free{% endif %}
+                    </span>
+                    <span class="rec-view-btn">View Details →</span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% elif user_input %}
+<!-- No Results -->
+<div class="rec-empty">
+    <div class="rec-empty-icon">🔭</div>
+    <h3>No strong matches found</h3>
+    <p>We couldn't find events matching <strong>"{{ user_input }}"</strong>. Try broader terms like <em>coding</em>, <em>music</em>, <em>dance</em>, or <em>robotics</em>.</p>
+</div>
+
+{% else %}
+<!-- How it works (shown before any search) -->
+<div class="rec-divider" style="max-width:900px; margin: 0 auto 36px;">
+    <div class="rec-divider-line"></div>
+    <div class="rec-divider-text">How It Works</div>
+    <div class="rec-divider-line"></div>
+</div>
+<div class="rec-how">
+    <div class="rec-how-card">
+        <div class="rec-how-num">1</div>
+        <h4>Tell Us Your Interests</h4>
+        <p>Type anything — hobbies, skills, or topics you're excited about.</p>
+    </div>
+    <div class="rec-how-card">
+        <div class="rec-how-num">2</div>
+        <h4>AI Matches Events</h4>
+        <p>Our TF-IDF engine computes similarity across all {{ events|length if events is defined else "50+" }} events.</p>
+    </div>
+    <div class="rec-how-card">
+        <div class="rec-how-num">3</div>
+        <h4>Register Instantly</h4>
+        <p>Click any match to view details and register in one tap.</p>
+    </div>
+</div>
+{% endif %}
+
+<script>
+function fillSearch(text) {
+    document.getElementById('interestInput').value = text;
+    document.getElementById('interestInput').closest('form').submit();
+}
+</script>
+
+{% endblock %}

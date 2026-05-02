@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <!-- 🔥 SIDEBAR -->
+    <div class="sidebar">
+
+        <h2>🎓 Admin</h2>
+
+        <a href="/admin">🏠 Dashboard</a>
+        <a href="/admin/events">📅 Events</a>
+        <a href="/admin/registrations">👨‍🎓 Registrations</a>
+        <a href="/admin/analytics">📊 Analytics</a>
+
+        <hr>
+
+        <a href="/">⬅ Back to Site</a>
+
+    </div>
+
+    <!-- 🔥 MAIN CONTENT -->
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+</div>
+
+</body>
+</html>

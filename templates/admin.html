@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1 style="text-align:center;">👨‍💼 Admin Dashboard</h1>
+
+    <!-- =========================
+         ADD EVENT FORM
+    ========================= -->
+    <div class="dashboard-card">
+
+        <h2>Add New Event</h2>
+
+        <form method="POST" class="form-grid">
+
+            <input type="text" name="name" placeholder="Event Name" required>
+            <input type="date" name="date" required>
+            <input type="text" name="venue" placeholder="Venue" required>
+            <input type="text" name="description" placeholder="Description" required>
+
+            <!-- IMPORTANT -->
+            <input type="text" name="category" placeholder="Category (sports/technical/cultural)" required>
+
+            <input type="text" name="image" placeholder="Image name (example: hack.jpg)">
+
+            <button type="submit">Add Event</button>
+
+        </form>
+
+    </div>
+
+
+    <!-- =========================
+         DASHBOARD STATS
+    ========================= -->
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+            <h3>Total Events</h3>
+            <p>{{ events|length }}</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Total Participants</h3>
+            <p>{{ participants|length }}</p>
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         GRAPH SECTION (FIXED)
+    ========================= -->
+    <div class="dashboard-card">
+
+        <h2>📊 Event Registrations</h2>
+
+        <!-- Hidden JSON storage -->
+        <div id="stats-data" data-stats='{{ stats | tojson }}'></div>
+
+        <canvas id="eventChart"></canvas>
+
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const statsElement = document.getElementById("stats-data");
+
+        // SAFE JSON PARSE
+        const statsData = JSON.parse(statsElement.dataset.stats || "{}");
+
+        const labels = Object.keys(statsData);
+        const values = Object.values(statsData);
+
+        if (labels.length > 0) {
+            new Chart(document.getElementById('eventChart'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Participants per Event',
+                        data: values,
+                        borderWidth: 2
+                    }]
+                }
+            });
+        } else {
+            document.getElementById('eventChart').outerHTML =
+                "<p style='text-align:center;'>No data available yet</p>";
+        }
+    </script>
+
+
+    <!-- =========================
+         STUDENT TABLE
+    ========================= -->
+    <div class="dashboard-card">
+
+        <h2>👨‍🎓 Registered Students</h2>
+
+        <table border="1" cellpadding="10" style="width:100%; text-align:center;">
+
+            <tr>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Branch</th>
+                <th>Event</th>
+                <th>Email</th>
+            </tr>
+
+            {% for p in participants %}
+            <tr>
+                <td>{{ p.name }}</td>
+                <td>{{ p.roll_no }}</td>
+                <td>{{ p.branch }}</td>
+                <td>{{ p.event }}</td>
+                <td>{{ p.email }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANOKHA 2026 — Tech Fest · Amrita University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --green-dark: #3a5a3e;
+      --green-mid: #5a7a5e;
+      --green-light: #8aab8e;
+      --green-pale: #c8deca;
+      --cream: #f4f0e8;
+      --cream-dark: #e8e2d6;
+      --text-dark: #1e2d20;
+      --text-mid: #3a5a3e;
+      --text-light: #6b8f6e;
+      --white: #ffffff;
+      --accent: #c8956b;
+      --shadow: 0 8px 32px rgba(58, 90, 62, 0.15);
+      --shadow-lg: 0 20px 60px rgba(58, 90, 62, 0.22);
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 700px at 5% 10%, rgba(90, 122, 94, 0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 600px 600px at 95% 90%, rgba(138, 171, 142, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(244, 240, 232, 0.92);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(90, 122, 94, 0.15);
+      box-shadow: 0 2px 20px rgba(58, 90, 62, 0.07);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--green-dark);
+    }
+
+    .nav-links a {
+      color: var(--text-mid);
+      text-decoration: none;
+      margin-left: 28px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--green-dark);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 14px;
+      transition: var(--transition);
+    }
+
+    .back-btn:hover {
+      color: var(--green-dark);
+    }
+
+    /* ---- HERO ---- */
+    .anokha-hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 100px 24px 80px;
+      overflow: hidden;
+    }
+
+    .anokha-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 700px 500px at 50% 0%, rgba(138, 171, 142, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90, 122, 94, 0.18) 0%, transparent 70%);
+      animation: floatOrb 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .orb1 {
+      width: 280px;
+      height: 280px;
+      top: -80px;
+      left: -60px;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 200px;
+      height: 200px;
+      bottom: -40px;
+      right: -40px;
+      animation-delay: -3.5s;
+    }
+
+    @keyframes floatOrb {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-24px) scale(1.06);
+      }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 7px 22px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(58, 90, 62, 0.25);
+    }
+
+    .year-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--text-light);
+      letter-spacing: 6px;
+      margin-bottom: 16px;
+    }
+
+    .anokha-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(72px, 12vw, 130px);
+      font-weight: 600;
+      line-height: 0.95;
+      color: var(--green-dark);
+      letter-spacing: -3px;
+      margin-bottom: 20px;
+    }
+
+    .anokha-hero h1 em {
+      font-style: italic;
+      color: var(--green-mid);
+    }
+
+    .anokha-hero p {
+      max-width: 540px;
+      margin: 0 auto 44px;
+      font-size: 16px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* Hero CTA buttons */
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 14px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(58, 90, 62, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-mid);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(58, 90, 62, 0.4);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--green-dark);
+      padding: 14px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      border: 2px solid var(--green-dark);
+      transition: var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: var(--green-dark);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    /* Stats strip */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      max-width: 660px;
+      margin: 0 auto;
+      border: 1px solid var(--green-pale);
+    }
+
+    .stat {
+      flex: 1;
+      text-align: center;
+      padding: 24px 20px;
+      border-right: 1px solid var(--green-pale);
+      transition: var(--transition);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat:hover {
+      background: rgba(138, 171, 142, 0.08);
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 600;
+      color: var(--green-dark);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* ---- DIVIDER ---- */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 48px 60px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--green-pale);
+    }
+
+    .divider-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      color: var(--green-light);
+      letter-spacing: 5px;
+      white-space: nowrap;
+    }
+
+    /* ---- FILTER TABS ---- */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+      padding: 0 24px;
+    }
+
+    .tab-btn {
+      background: var(--white);
+      color: var(--text-mid);
+      border: 1.5px solid var(--green-pale);
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 2px 8px rgba(58, 90, 62, 0.07);
+    }
+
+    .tab-btn:hover,
+    .tab-btn.active {
+      background: var(--green-dark);
+      color: var(--white);
+      border-color: var(--green-dark);
+      box-shadow: 0 4px 16px rgba(58, 90, 62, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* ---- EVENTS GRID ---- */
+    .events-container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      padding: 0 48px 100px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    @media(max-width:1200px) {
+      .events-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media(max-width:800px) {
+      .events-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 0 20px 60px;
+      }
+    }
+
+    @media(max-width:540px) {
+      .events-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ---- EVENT CARD ---- */
+    .event-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(90, 122, 94, 0.1);
+      display: flex;
+      flex-direction: column;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .event-card:hover {
+      transform: translateY(-14px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-image-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image-wrap img {
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      display: block;
+      background: #1a2a1c;
+      transition: transform 0.55s ease;
+    }
+
+    .event-card:hover .card-image-wrap img {
+      transform: scale(1.09);
+    }
+
+    /* Gradient overlay on image */
+    .card-image-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30, 45, 32, 0.45) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .card-ribbon {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 5px 14px;
+      border-radius: 30px;
+      box-shadow: 0 2px 8px rgba(30, 45, 32, 0.35);
+    }
+
+    .card-date-tag {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      z-index: 2;
+      background: rgba(244, 240, 232, 0.96);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 30px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(30, 45, 32, 0.15);
+    }
+
+    .card-fee-tag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 30px;
+      box-shadow: 0 2px 8px rgba(200, 149, 107, 0.4);
+    }
+
+    .card-body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 9px;
+      line-height: 1.25;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 15px;
+      border-top: 1px solid rgba(200, 222, 202, 0.6);
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .card-venue {
+      font-size: 12px;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .register-btn {
+      background: var(--green-dark);
+      color: var(--white);
+      border: none;
+      padding: 9px 22px;
+      border-radius: 30px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-block;
+      box-shadow: 0 3px 12px rgba(58, 90, 62, 0.25);
+    }
+
+    .register-btn:hover {
+      background: var(--green-mid);
+      transform: scale(1.06);
+    }
+
+    .register-btn.has-fee {
+      background: var(--accent);
+    }
+
+    .register-btn.has-fee:hover {
+      filter: brightness(1.1);
+    }
+
+    /* ---- FREE badge on card footer ---- */
+    .free-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green-dark);
+      background: rgba(138, 171, 142, 0.18);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--green-pale);
+    }
+
+    /* ---- SECTION LABEL ---- */
+    .section-label {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-label h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 600;
+      color: var(--green-dark);
+      letter-spacing: -0.5px;
+    }
+
+    .section-label h2 em {
+      font-style: italic;
+      color: var(--green-mid);
+    }
+
+    .section-label p {
+      font-size: 15px;
+      color: var(--text-light);
+      margin-top: 8px;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 13px;
+      color: var(--text-light);
+      border-top: 1px solid var(--green-pale);
+      background: var(--cream-dark);
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 14px 20px;
+      }
+
+      .anokha-hero {
+        padding: 70px 20px 60px;
+      }
+
+      .events-container {
+        padding: 0 16px 60px;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+      }
+
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--green-pale);
+      }
+
+      .divider {
+        padding: 30px 24px 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">🌿 College Events</div>
+    <div class="nav-links">
+      <a href="/" class="back-btn">← Home</a>
+      <a href="/fests">All Fests</a>
+      <a href="/registration">My Events</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="anokha-hero">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <span class="hero-tag">Amrita University &nbsp;·&nbsp; Jan 7–9, 2026</span>
+    <div class="year-badge">2 &thinsp; 0 &thinsp; 2 &thinsp; 6</div>
+    <h1><em>Anokha</em></h1>
+    <p>A celebration of technology, innovation, and creativity. Three days of workshops, competitions, and unforgettable
+      campus experiences.</p>
+
+    <div class="hero-cta-group">
+      <a href="#events" class="btn-primary">Browse Events ↓</a>
+      <a href="/registration" class="btn-outline">My Registrations</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">46</div>
+        <div class="stat-label">Events</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Days</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Jan 7</div>
+        <div class="stat-label">Starts</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-text">✦ &nbsp; ALL EVENTS &nbsp; ✦</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ══════════════ FILTER TABS ══════════════ -->
+  <div class="filter-tabs">
+    <button class="tab-btn active" onclick="filterCards('all',this)">✦ All Events</button>
+    <button class="tab-btn" onclick="filterCards('technical',this)">💻 Technical</button>
+    <button class="tab-btn" onclick="filterCards('gaming',this)">🎮 Gaming</button>
+    <button class="tab-btn" onclick="filterCards('workshop',this)">🛠 Workshop</button>
+    <button class="tab-btn" onclick="filterCards('cultural',this)">🎨 Cultural</button>
+    <button class="tab-btn" onclick="filterCards('entrepreneurship',this)">🚀 Startup</button>
+  </div>
+
+  <!-- ══════════════ EVENTS GRID ══════════════ -->
+  <div class="events-container" id="eventsGrid">
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/agamotto.png" alt="Project Agamotto" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹1,200</span>
+      </div>
+      <div class="card-body">
+        <h3>Project Agamotto</h3>
+        <p class="card-desc">An immersive problem-solving challenge pushing the boundaries of creative engineering.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Innovation Hub</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/agenticaiot.png" alt="Agentic AI & IoT Workshop" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹600</span>
+      </div>
+      <div class="card-body">
+        <h3>Agentic AI & IoT Workshop</h3>
+        <p class="card-desc">Hands-on workshop building autonomous AI agents integrated with real IoT sensor networks.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Lab Block B</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/aidriven.png" alt="AI-Driven Energy Conservation" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>AI-Driven Energy Conservation</h3>
+        <p class="card-desc">Workshop on applying AI techniques to energy conservation and smart grid management.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Seminar Hall 2</span>
+          <a href="/register/2" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="workshop">
+      <div class="card-image-wrap">
+        <img src="/static/events/biomedical.png" alt="Biomedical Signal Processing" loading="lazy">
+        <span class="card-ribbon">Workshop</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹700</span>
+      </div>
+      <div class="card-body">
+        <h3>Biomedical Signal Processing</h3>
+        <p class="card-desc">Hands-on experience with biomedical signal analysis and rehabilitation robotics systems.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 BioMed Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/build2.png" alt="Build 2.0" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>Build 2.0</h3>
+        <p class="card-desc">A rapid prototyping competition — take a concept from idea to working prototype in hours.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Maker Space</span>
+          <a href="/register/2" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/buildthe.png" alt="Build The Future" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹600</span>
+      </div>
+      <div class="card-body">
+        <h3>Build The Future</h3>
+        <p class="card-desc">Collaborative design challenge to create next-generation solutions for everyday problems.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Design Studio</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/campusquest.png" alt="Campus Quest" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹400</span>
+      </div>
+      <div class="card-body">
+        <h3>Campus Quest</h3>
+        <p class="card-desc">Campus-wide treasure hunt mixing clues, puzzles, and teamwork across every department.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Open Campus</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/causes.png" alt="Shallow Foundation Failures" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹300</span>
+      </div>
+      <div class="card-body">
+        <h3>Shallow Foundation Failures</h3>
+        <p class="card-desc">Seminar on causes of shallow foundation failures and practical civil engineering remedies.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Civil Block</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/cinevfx.jpeg" alt="Cine VFX Workshop" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹300</span>
+      </div>
+      <div class="card-body">
+        <h3>Cine VFX Workshop</h3>
+        <p class="card-desc">Industry-standard compositing techniques and live project work with professional VFX
+          artists.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Media Lab</span>
+          <a href="/register/8" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="gaming">
+      <div class="card-image-wrap">
+        <img src="/static/events/clashroyale.jpeg" alt="RAGNAROK — Clash Royale" loading="lazy">
+        <span class="card-ribbon">Gaming</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹100</span>
+      </div>
+      <div class="card-body">
+        <h3>RAGNAROK — Clash Royale</h3>
+        <p class="card-desc">Mobile gaming tournament. Show off your deck-building and strategy skills against the
+          campus best.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Gaming Arena</span>
+          <a href="/register/6" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/electro.png" alt="Electrothon" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>Electrothon</h3>
+        <p class="card-desc">Electronics design marathon — build functional circuits and embedded systems under time
+          pressure.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Electronics Lab</span>
+          <a href="/register/2" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="entrepreneurship">
+      <div class="card-image-wrap">
+        <img src="/static/events/elite.png" alt="Elite Pitch Arena" loading="lazy">
+        <span class="card-ribbon">Startup</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>Elite Pitch Arena</h3>
+        <p class="card-desc">Pitch your startup idea to real investors and experienced mentors. Win seed funding and
+          mentorship.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Innovation Hub</span>
+          <a href="/register/5" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/epictures.png" alt="Epictures" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹850</span>
+      </div>
+      <div class="card-body">
+        <h3>Epictures</h3>
+        <p class="card-desc">Photography and short-film storytelling competition open to all genres and styles.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Media Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/escaperoom.png" alt="Escape Room Challenge" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹300</span>
+      </div>
+      <div class="card-body">
+        <h3>Escape Room Challenge</h3>
+        <p class="card-desc">Themed escape room puzzles designed by students. Can your team crack the code in time?</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Activity Hall</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/eureka.png" alt="Eureka — Project Expo" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹300</span>
+      </div>
+      <div class="card-body">
+        <h3>Eureka — Project Expo</h3>
+        <p class="card-desc">Showcase your innovative project to faculty, industry judges, and your peers.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Exhibition Hall</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/farmfiesta.png" alt="Farm Fiesta" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹400</span>
+      </div>
+      <div class="card-body">
+        <h3>Farm Fiesta</h3>
+        <p class="card-desc">A unique cultural celebration fusing agriculture with technology. Open to all departments.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Open Grounds</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/filminsights.png" alt="Film Insights" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹450</span>
+      </div>
+      <div class="card-body">
+        <h3>Film Insights</h3>
+        <p class="card-desc">Panel discussions and screenings exploring the craft of filmmaking and visual storytelling.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Auditorium</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/flight.png" alt="Flight Factory: Build Your RC Plane" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹1,500</span>
+      </div>
+      <div class="card-body">
+        <h3>Flight Factory: Build Your RC Plane</h3>
+        <p class="card-desc">Construct and fly your own remote-controlled aircraft from scratch in this guided workshop.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Aero Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="gaming">
+      <div class="card-image-wrap">
+        <img src="/static/events/freefire.jpeg" alt="RAGNAROK — Free Fire" loading="lazy">
+        <span class="card-ribbon">Gaming</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>RAGNAROK — Free Fire</h3>
+        <p class="card-desc">Battle royale showdown. Form your squad, drop in, and dominate the campus island.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Gaming Arena</span>
+          <a href="/register/7" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/gamedev.png" alt="GameDev Sprint" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹500</span>
+      </div>
+      <div class="card-body">
+        <h3>GameDev Sprint</h3>
+        <p class="card-desc">Build your first playable game in one day using Unity or Godot. Guided sprint format.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 CS Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/genai.png" alt="Generative AI Workshop" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹500</span>
+      </div>
+      <div class="card-body">
+        <h3>Generative AI Workshop</h3>
+        <p class="card-desc">Deep-dive into LLMs, diffusion models, and prompt engineering with live coding labs.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 AI Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/groove.png" alt="Groove — Dance Battle" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹400</span>
+      </div>
+      <div class="card-body">
+        <h3>Groove — Dance Battle</h3>
+        <p class="card-desc">Inter-department freestyle and choreo dance competition. Show the campus your moves.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Open Stage</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/hacktide.png" alt="HackTide" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹600</span>
+      </div>
+      <div class="card-body">
+        <h3>HackTide</h3>
+        <p class="card-desc">24-hour intensive hackathon to build innovative solutions to real-world problems. Teams of
+          2–4.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Main Auditorium</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/ipl.png" alt="IPL Auction Simulation" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹1,200</span>
+      </div>
+      <div class="card-body">
+        <h3>IPL Auction Simulation</h3>
+        <p class="card-desc">Simulate the IPL mega-auction. Strategise, bid, and build the ultimate dream team.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Sports Block</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/knowing.png" alt="The Knowing" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>The Knowing</h3>
+        <p class="card-desc">An interactive trivia and mystery-game event blending pop culture with campus knowledge.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Seminar Hall 1</span>
+          <a href="/register/2" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="gaming">
+      <div class="card-image-wrap">
+        <img src="/static/events/lanparty.jpeg" alt="RAGNAROK — LAN Party" loading="lazy">
+        <span class="card-ribbon">Gaming</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹100</span>
+      </div>
+      <div class="card-body">
+        <h3>RAGNAROK — LAN Party</h3>
+        <p class="card-desc">Classic LAN gaming extravaganza with multiple titles, prizes, and a spectator lounge.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Gaming Arena</span>
+          <a href="/register/6" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/microcv.png" alt="Micro CV Competition" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹2,000</span>
+      </div>
+      <div class="card-body">
+        <h3>Micro CV Competition</h3>
+        <p class="card-desc">Design a fully functional system on the smallest possible circuit board. Precision wins.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Electronics Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="gaming">
+      <div class="card-image-wrap">
+        <img src="/static/events/mobile.png" alt="Mobile Tournament" loading="lazy">
+        <span class="card-ribbon">Gaming</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹100</span>
+      </div>
+      <div class="card-body">
+        <h3>Mobile Tournament</h3>
+        <p class="card-desc">All-device mobile gaming bracket spanning BGMI, Clash of Clans, and more. ₹650 entry.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Gaming Arena</span>
+          <a href="/register/7" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/paintyour.png" alt="Paint Your World" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹500</span>
+      </div>
+      <div class="card-body">
+        <h3>Paint Your World</h3>
+        <p class="card-desc">Open canvas painting session — any medium, any theme. Judged on creativity and execution.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Art Studio</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/power.png" alt="Power Systems Symposium" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹400</span>
+      </div>
+      <div class="card-body">
+        <h3>Power Systems Symposium</h3>
+        <p class="card-desc">Student presentations and demos on renewable energy, power grids, and smart distribution.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 EEE Block</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/quiz.png" alt="Never Gonna Quiz You Up" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹250</span>
+      </div>
+      <div class="card-body">
+        <h3>Never Gonna Quiz You Up</h3>
+        <p class="card-desc">The ultimate campus quiz — tech, science, pop culture, and everything in between.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Main Hall</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/reverse.png" alt="Reverse Coding" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹800</span>
+      </div>
+      <div class="card-body">
+        <h3>Reverse Coding</h3>
+        <p class="card-desc">Decode the output, reconstruct the code. The trickiest programming challenge at Anokha.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 CS Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/roboblaze.png" alt="RoboBlaze" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹1,200</span>
+      </div>
+      <div class="card-body">
+        <h3>RoboBlaze</h3>
+        <p class="card-desc">High-speed autonomous robot racing. Build, program, and unleash your bot on the track.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Robo Arena</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="workshop">
+      <div class="card-image-wrap">
+        <img src="/static/events/robomastry.png" alt="RoboMastery Workshop" loading="lazy">
+        <span class="card-ribbon">Workshop</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹1,200</span>
+      </div>
+      <div class="card-body">
+        <h3>RoboMastery Workshop</h3>
+        <p class="card-desc">Beginner-friendly robotics workshop. Build and code your first robot from scratch.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Robo Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/roborally.png" alt="RoboRally" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹900</span>
+      </div>
+      <div class="card-body">
+        <h3>RoboRally</h3>
+        <p class="card-desc">Maze-solving robot competition. Program your bot to navigate obstacles faster than the
+          rest.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Robo Arena</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/robosumo.png" alt="RoboSumo" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹900</span>
+      </div>
+      <div class="card-body">
+        <h3>RoboSumo</h3>
+        <p class="card-desc">Robot sumo wrestling — push your opponent out of the ring using code and clever design.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Robo Arena</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/scavenger.png" alt="Scavenger Hunt" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹350</span>
+      </div>
+      <div class="card-body">
+        <h3>Scavenger Hunt</h3>
+        <p class="card-desc">Clue-based campus-wide hunt with hidden checkpoints and surprise challenges at every stop.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Open Campus</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/smartcity.png" alt="Smart City War Room" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹600</span>
+      </div>
+      <div class="card-body">
+        <h3>Smart City War Room</h3>
+        <p class="card-desc">Urban problem-solving showdown — design your smart city blueprint and defend your plan.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Design Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/smartiot.png" alt="Smart IoT Challenge" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹500</span>
+      </div>
+      <div class="card-body">
+        <h3>Smart IoT Challenge</h3>
+        <p class="card-desc">Build a working IoT prototype that solves a real campus problem. Live judging by industry
+          experts.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 IoT Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="workshop">
+      <div class="card-image-wrap">
+        <img src="/static/events/sony.png" alt="SONY Camera Experience" loading="lazy">
+        <span class="card-ribbon">Workshop</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹100</span>
+      </div>
+      <div class="card-body">
+        <h3>SONY Camera Experience</h3>
+        <p class="card-desc">Exclusive session with Sony's latest camera lineup — shoot, review, and learn from pros.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Media Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/stargazing.png" alt="Stargazing Night" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">Free</span>
+      </div>
+      <div class="card-body">
+        <h3>Stargazing Night</h3>
+        <p class="card-desc">Telescope-assisted night sky observation session with a guided tour of constellations.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Rooftop Terrace</span>
+          <a href="/register/2" class="register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="gaming">
+      <div class="card-image-wrap">
+        <img src="/static/events/strategy.png" alt="Strategy Games Olympiad" loading="lazy">
+        <span class="card-ribbon">Gaming</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹350</span>
+      </div>
+      <div class="card-body">
+        <h3>Strategy Games Olympiad</h3>
+        <p class="card-desc">Chess, Battleship, and custom board game tournaments. Prove your tactical supremacy.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Activity Hall</span>
+          <a href="/register/6" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="cultural">
+      <div class="card-image-wrap">
+        <img src="/static/events/unveiling.png" alt="Unveiling" loading="lazy">
+        <span class="card-ribbon">Cultural</span>
+        <span class="card-date-tag">Jan 9</span>
+        <span class="card-fee-tag">₹400</span>
+      </div>
+      <div class="card-body">
+        <h3>Unveiling</h3>
+        <p class="card-desc">Student theatre and mime performance showcase — original scripts, original talent.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Auditorium</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="gaming">
+      <div class="card-image-wrap">
+        <img src="/static/events/valorant.jpeg" alt="RAGNAROK — Valorant" loading="lazy">
+        <span class="card-ribbon">Gaming</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹1,200</span>
+      </div>
+      <div class="card-body">
+        <h3>RAGNAROK — Valorant</h3>
+        <p class="card-desc">Competitive Valorant tournament. Register your 5-person squad and battle for campus glory.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Gaming Arena</span>
+          <a href="/register/6" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="gaming">
+      <div class="card-image-wrap">
+        <img src="/static/events/warzone.png" alt="Warzone Squad Battle" loading="lazy">
+        <span class="card-ribbon">Gaming</span>
+        <span class="card-date-tag">Jan 8</span>
+        <span class="card-fee-tag">₹650</span>
+      </div>
+      <div class="card-body">
+        <h3>Warzone Squad Battle</h3>
+        <p class="card-desc">Call of Duty: Warzone squads competition. Outlast every team and claim the Anokha crown.
+        </p>
+        <div class="card-footer">
+          <span class="card-venue">📍 Gaming Arena</span>
+          <a href="/register/7" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-category="technical">
+      <div class="card-image-wrap">
+        <img src="/static/events/winter.png" alt="Winter of Code 2.0" loading="lazy">
+        <span class="card-ribbon">Technical</span>
+        <span class="card-date-tag">Jan 7</span>
+        <span class="card-fee-tag">₹100</span>
+      </div>
+      <div class="card-body">
+        <h3>Winter of Code 2.0</h3>
+        <p class="card-desc">Open source contribution sprint with mentorship from senior developers. Build something
+          that matters.</p>
+        <div class="card-footer">
+          <span class="card-venue">📍 CS Lab</span>
+          <a href="/register/2" class="register-btn has-fee">Pay &amp; Register</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /events-container -->
+
+  <footer>
+    🌿 &copy; 2026 Anokha Tech Fest — Amrita University &nbsp;|&nbsp; College Event Management System
+  </footer>
+
+  <script>
+    function filterCards(category, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('#eventsGrid .event-card');
+      let delay = 0;
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(18px)';
+          card.style.animationDelay = delay + 'ms';
+          card.style.animation = 'none';
+          requestAnimationFrame(() => {
+            card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          });
+          delay += 50;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+  </script>
+
+</body>
+
+</html>

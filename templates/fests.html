@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Fests and Events</h1>
+
+<div class="fest-container">
+
+<a href="/anokha">
+<div class="fest-card video-card">
+
+<video autoplay muted loop class="card-video">
+<source src="{{ url_for('static', filename='anokha.mp4') }}" type="video/mp4">
+</video>
+
+<div class="card-text">
+<h2>Anokha</h2>
+<p>Tech Fest</p>
+</div>
+
+</div>
+</a>
+
+<a href="/pragati">
+<div class="fest-card video-card">
+
+<video autoplay muted loop class="card-video">
+<source src="{{ url_for('static', filename='pragati.mp4') }}" type="video/mp4">
+</video>
+
+<div class="card-text">
+<h2>Pragati</h2>
+<p>Cultural Fest</p>
+</div>
+
+</div>
+</a>
+
+</div>
+
+{% endblock %}

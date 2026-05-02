@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="registration-wrapper">
+
+  <div class="registration-header">
+    <h1>Register for {{ event.name }}</h1>
+    <p>{% if event.fee and event.fee > 0 %}
+        This event requires a registration fee of <strong>₹{{ event.fee }}</strong>
+       {% else %}
+        Free event — your details will be sent directly to the organiser
+       {% endif %}
+    </p>
+  </div>
+
+  <div class="dashboard-grid">
+
+    <!-- REGISTER CARD -->
+    <div class="dashboard-card">
+      <h3>{% if profile %}Confirm Registration{% else %}Participant Details{% endif %}</h3>
+
+      {% if success %}
+        <div class="success-box">✅ {{ success }}</div>
+        <div style="margin-top:20px;">
+          <a href="/" class="hero-btn" style="margin-right:12px;">← Back to Home</a>
+          <a href="/anokha" class="undo-btn">View All Events</a>
+        </div>
+      {% elif show_payment %}
+        <!-- PAYMENT CONFIRMATION STEP -->
+        <div class="fee-box">
+          <h4>💳 Payment Required</h4>
+          <div class="fee-amount">₹{{ fee }}</div>
+          <p style="margin-top:8px; font-size:14px; color:#777;">
+            Pay via UPI / Cash at registration desk before confirming.
+          </p>
+        </div>
+        <form method="POST" action="/register/{{ event.id }}">
+          {% if profile %}
+            <input type="hidden" name="name"       value="{{ profile.name }}">
+            <input type="hidden" name="roll_no"    value="{{ profile.roll_no }}">
+            <input type="hidden" name="branch"     value="{{ profile.branch }}">
+            <input type="hidden" name="department" value="{{ profile.department }}">
+            <input type="hidden" name="year"       value="{{ profile.year }}">
+            <input type="hidden" name="email"      value="{{ profile.email }}">
+            <input type="hidden" name="phone"      value="{{ profile.phone }}">
+          {% endif %}
+          <input type="hidden" name="payment_confirmed" value="yes">
+          <div class="button-group" style="margin-top:16px;">
+            <button type="submit">✅ I Have Paid — Confirm Registration</button>
+            <a href="/" class="undo-btn">Cancel</a>
+          </div>
+        </form>
+
+      {% elif profile %}
+        <!-- RETURNING USER: auto-fill, just confirm -->
+        <div class="profile-notice">
+          🟢 Your details are saved. Click <strong>Register Now</strong> to instantly sign up!
+        </div>
+        <div style="background:var(--cream); border-radius:12px; padding:18px; margin-bottom:20px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:14px;">
+            <div><strong>Name:</strong> {{ profile.name }}</div>
+            <div><strong>Roll No:</strong> {{ profile.roll_no }}</div>
+            <div><strong>Branch:</strong> {{ profile.branch }}</div>
+            <div><strong>Department:</strong> {{ profile.department }}</div>
+            <div><strong>Year:</strong> {{ profile.year }}</div>
+            <div><strong>Email:</strong> {{ profile.email }}</div>
+            <div><strong>Phone:</strong> {{ profile.phone }}</div>
+          </div>
+        </div>
+        {% if error %}<div class="error-box">⚠️ {{ error }}</div>{% endif %}
+        <form method="POST" action="/register/{{ event.id }}">
+          <input type="hidden" name="name"       value="{{ profile.name }}">
+          <input type="hidden" name="roll_no"    value="{{ profile.roll_no }}">
+          <input type="hidden" name="branch"     value="{{ profile.branch }}">
+          <input type="hidden" name="department" value="{{ profile.department }}">
+          <input type="hidden" name="year"       value="{{ profile.year }}">
+          <input type="hidden" name="email"      value="{{ profile.email }}">
+          <input type="hidden" name="phone"      value="{{ profile.phone }}">
+          <div class="button-group">
+            <button type="submit">
+              {% if fee and fee > 0 %}Proceed to Pay ₹{{ fee }}{% else %}Register Now →{% endif %}
+            </button>
+            <a href="/undo/{{ event.id }}" class="undo-btn">Undo Last</a>
+          </div>
+        </form>
+
+      {% else %}
+        <!-- FIRST-TIME USER: full form -->
+        <p style="font-size:13px; color:var(--text-light); margin-bottom:18px;">
+          Fill in your details once — they'll be saved for future events!
+        </p>
+        {% if error %}<div class="error-box" style="margin-bottom:16px;">⚠️ {{ error }}</div>{% endif %}
+        <form method="POST" action="/register/{{ event.id }}" class="form-grid">
+          <input type="text"  name="name"       placeholder="Full Name"       required>
+          <input type="text"  name="roll_no"    placeholder="Roll Number"     required>
+          <input type="text"  name="branch"     placeholder="Branch"          required>
+          <input type="text"  name="department" placeholder="Department"      required>
+          <select name="year" required>
+            <option value="">Select Year</option>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+          </select>
+          <input type="email" name="email"      placeholder="Email ID"        required>
+          <input type="text"  name="phone"      placeholder="Contact Number"  required>
+          <div class="button-group full-width">
+            <button type="submit">
+              {% if fee and fee > 0 %}Proceed to Pay ₹{{ fee }}{% else %}Register Now →{% endif %}
+            </button>
+            <a href="/undo/{{ event.id }}" class="undo-btn">Undo</a>
+          </div>
+        </form>
+      {% endif %}
+
+      {% if message %}<div class="search-result-box">{{ message }}</div>{% endif %}
+    </div>
+
+    <!-- SIDE PANEL -->
+    <div style="display:flex; flex-direction:column; gap:20px;">
+
+      <!-- Event Info -->
+      <div class="dashboard-card">
+        <h3>Event Info</h3>
+        <p style="font-size:14px; color:var(--text-light); margin-bottom:8px;">📅 {{ event.date }}</p>
+        <p style="font-size:14px; color:var(--text-light); margin-bottom:8px;">📍 {{ event.venue }}</p>
+        <p style="font-size:14px; color:var(--text-light); margin-bottom:12px;">{{ event.description }}</p>
+        {% if fee and fee > 0 %}
+          <div style="background:rgba(200,149,107,0.1); padding:10px 14px; border-radius:8px; font-size:14px;">
+            💰 Registration Fee: <strong style="color:var(--accent);">₹{{ fee }}</strong>
+          </div>
+        {% else %}
+          <div style="background:rgba(138,171,142,0.12); padding:10px 14px; border-radius:8px; font-size:14px;">
+            ✅ <strong style="color:var(--green-dark);">Free Event</strong>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Search Participant -->
+      <div class="dashboard-card">
+        <h3>Search</h3>
+        <form method="POST" action="/registration" style="display:flex; flex-direction:column; gap:10px;">
+          <input type="text" name="search_name" placeholder="Search participant..." style="padding:10px 14px; border:1.5px solid var(--green-pale); border-radius:8px; font-size:14px; outline:none; font-family:'DM Sans',sans-serif;">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- LINKED LIST VISUAL -->
+    <div class="dashboard-card full-width">
+      <h3>🔗 Linked List — Registered Participants</h3>
+      <div class="list-visual">
+        {% for p in participants %}
+          <span class="node">{{ p.name }}</span>
+          <span class="arrow">→</span>
+        {% endfor %}
+        <span class="null">NULL</span>
+      </div>
+      {% if not participants %}
+        <p style="color:var(--text-light); font-size:14px; text-align:center; padding:10px;">No participants yet.</p>
+      {% endif %}
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

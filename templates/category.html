@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="section-title">{{ category|capitalize }} Events</h2>
+
+<div class="category-page">
+
+    {% for event in events %}
+    <div class="event-card">
+
+        <!-- IMAGE -->
+        <div class="event-image">
+            {% set img = event.image or 'default.jpg' %}
+            {% if img.startswith('http') %}
+            <img src="{{ img }}">
+            {% elif img.startswith('root:') %}
+            <img src="{{ url_for('static', filename=img[5:]) }}">
+            {% else %}
+            <img src="{{ url_for('static', filename='events/' + img) }}">
+            {% endif %}
+        </div>
+
+        <!-- WHITE INFO BOX -->
+        <div class="event-info-box">
+            <h3>{{ event.name }}</h3>
+
+            <p class="event-meta">📅 {{ event.date }}</p>
+            <p class="event-meta">📍 {{ event.venue }}</p>
+
+            <p class="event-desc">
+                {{ event.description[:80] }}...
+            </p>
+
+            <a href="/register/{{ event.id }}" class="register-btn">Register</a>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

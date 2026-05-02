@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag-pill">✦ Campus & Beyond</div>
+  <h1>Welcome to<br><em>College Events</em></h1>
+  <p>Discover, register &amp; participate in exciting events happening around campus and beyond.</p>
+  <div class="hero-btns">
+    <a href="/fests" class="hero-btn">Explore Events →</a>
+    <a href="/registration" class="hero-btn hero-btn-outline">Register Now</a>
+  </div>
+</div>
+
+<!-- UPCOMING EVENTS — Infinite Loop Slider -->
+<h2 class="section-title"><em>Upcoming</em> Events</h2>
+
+<div class="slider-container">
+  <div class="slider-track" id="sliderTrack">
+
+    {% set upcoming = [
+      (url_for('static', filename='smartindiahackathon.jpeg'), "Aug 15, 2026", "Smart India Hackathon", "Multiple Nodal Centers, India", "https://sih.gov.in/"),
+      (url_for('static', filename='techfestiitbombay.jpg'), "Dec 27, 2026", "Techfest IIT Bombay", "IIT Bombay, Mumbai", "https://techfest.org/"),
+      (url_for('static', filename='kurukshetra.jpg'), "Feb 18, 2026", "Kurukshetra", "Anna University, Chennai", "https://kurukshetra.org.in/"),
+      (url_for('static', filename='smartcityhackathon.png'), "Feb 15, 2026", "Smart City Hackathon", "Amrita University, Coimbatore", "/category/technical"),
+      (url_for('static', filename='techkriti.jpg'), "March 12, 2026", "Techkriti", "IIT Kanpur, Uttar Pradesh", "https://techkriti.org/"),
+      (url_for('static', filename='spardha.jpg'), "Oct 15, 2026", "Spardha", "IIT BHU, Varanasi", "https://spardha.in/")
+    ] %}
+
+    {% for img, date, title, loc, link in upcoming %}
+    <a href="{{ link }}" target="_blank" class="event-card" style="text-decoration: none;">
+      <div class="image-container">
+        <img src="{{ img }}" alt="{{ title }}" loading="lazy">
+        <div class="overlay">
+          <p class="event-date">{{ date }}</p>
+          <h3>{{ title }}</h3>
+          <p>📍 {{ loc }}</p>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+
+    <!-- Duplicate for seamless loop -->
+    {% for img, date, title, loc, link in upcoming %}
+    <a href="{{ link }}" target="_blank" class="event-card" style="text-decoration: none;">
+      <div class="image-container">
+        <img src="{{ img }}" alt="{{ title }}" loading="lazy">
+        <div class="overlay">
+          <p class="event-date">{{ date }}</p>
+          <h3>{{ title }}</h3>
+          <p>📍 {{ loc }}</p>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+
+  </div>
+</div>
+
+<!-- EVENT CATEGORIES -->
+<h2 class="section-title">Event <em>Categories</em></h2>
+
+<div class="category-grid">
+  <a href="/category/technical"        class="category-box">💻 Technical</a>
+  <a href="/category/sports"           class="category-box">🏏 Sports</a>
+  <a href="/category/cultural"         class="category-box">🎭 Cultural</a>
+  <a href="/category/gaming"           class="category-box">🎮 Gaming &amp; Fun</a>
+  <a href="/category/entrepreneurship" class="category-box">🚀 Entrepreneurship</a>
+  <a href="/category/professional"     class="category-box">🏢 Professional</a>
+  <a href="/category/workshop"         class="category-box">🛠️ Workshop</a>
+  <a href="/category/seminar"          class="category-box">🎤 Seminar</a>
+</div>
+
+<div class="past-events-section">
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>Year</label>
+      <select id="filterYear">
+        <option value="All">All</option>
+        <option value="2026">2026</option>
+        <option value="2025">2025</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Month</label>
+      <select id="filterMonth">
+        <option value="All">All</option>
+        <option value="Jan">January</option>
+        <option value="Feb">February</option>
+        <option value="Mar">March</option>
+        <option value="Apr">April</option>
+        <option value="May">May</option>
+        <option value="Jun">June</option>
+        <option value="Jul">July</option>
+        <option value="Aug">August</option>
+        <option value="Sep">September</option>
+        <option value="Oct">October</option>
+        <option value="Nov">November</option>
+        <option value="Dec">December</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Type</label>
+      <select id="filterType">
+        <option value="All">All</option>
+        <option value="technical">Technical</option>
+        <option value="cultural">Cultural</option>
+        <option value="sports">Sports</option>
+        <option value="gaming">Gaming</option>
+        <option value="entrepreneurship">Entrepreneurship</option>
+        <option value="professional">Professional</option>
+        <option value="workshop">Workshop</option>
+        <option value="seminar">Seminar</option>
+      </select>
+    </div>
+    <button class="filter-btn" onclick="applyEventFilter()">Apply Filter</button>
+  </div>
+
+  <div class="past-grid" id="eventsGrid">
+    {% for event in events %}
+    <div class="past-card event-item" data-year="{{ event.date[-4:] }}" data-month="{{ event.date[:3] }}" data-type="{{ event.category }}">
+      {% if event.image.startswith('http') %}
+      <img src="{{ event.image }}" alt="" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop'">
+      {% elif event.image.startswith('root:') %}
+      <img src="{{ url_for('static', filename=event.image[5:]) }}" alt="" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop'">
+      {% else %}
+      <img src="{{ url_for('static', filename='events/' + event.image) }}" alt="" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop'">
+      {% endif %}
+      <p class="date">{{ event.date }}</p>
+      <p>{{ event.name }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+function applyEventFilter() {
+  const year = document.getElementById('filterYear').value;
+  const month = document.getElementById('filterMonth').value;
+  const type = document.getElementById('filterType').value;
+
+  const items = document.querySelectorAll('.event-item');
+  items.forEach(item => {
+    const itemYear = item.getAttribute('data-year');
+    const itemMonth = item.getAttribute('data-month');
+    const itemType = item.getAttribute('data-type');
+
+    let match = true;
+    if (year !== 'All' && itemYear !== year) match = false;
+    if (month !== 'All' && itemMonth !== month) match = false;
+    if (type !== 'All' && itemType !== type) match = false;
+
+    if (match) {
+      item.style.display = ''; 
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+</script>
+
+{% endblock %}

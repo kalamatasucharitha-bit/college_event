@@ -1,0 +1,66 @@
+{% extends "admin_layout.html" %}
+
+{% block content %}
+
+<h2>👨‍🎓 Participant Management</h2>
+
+<!-- 🔍 SEARCH + 🎯 FILTER -->
+<form method="POST" style="margin-bottom:20px;">
+
+    <input type="text" name="search_name" placeholder="Search participant...">
+
+    <!-- 🎯 FILTER BY EVENT -->
+    <select name="event_filter">
+        <option value="">All Events</option>
+        {% for e in events %}
+            <option value="{{ e.name }}">{{ e.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button>Apply</button>
+
+</form>
+
+<!-- 📥 EXPORT CSV -->
+<a href="/admin/export_csv">
+    <button style="margin-bottom:20px; background:green; color:white;">
+        Download CSV
+    </button>
+</a>
+
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+
+<h3>Total Participants: {{ total }}</h3>
+
+<!-- 📋 TABLE -->
+<table border="1" cellpadding="10" style="width:100%; text-align:center;">
+
+<tr>
+    <th>Name</th>
+    <th>Roll No</th>
+    <th>Branch</th>
+    <th>Event</th>
+    <th>Action</th>
+</tr>
+
+{% for p in participants %}
+<tr>
+    <td>{{ p.name }}</td>
+    <td>{{ p.roll_no }}</td>
+    <td>{{ p.branch }}</td>
+    <td>{{ p.event }}</td>
+
+    <td>
+        <form method="POST" action="/admin/delete_participant">
+            <input type="hidden" name="name" value="{{ p.name }}">
+            <button style="background:red; color:white;">Delete</button>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}
